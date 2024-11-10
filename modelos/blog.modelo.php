@@ -1,0 +1,34 @@
+<?php
+
+require_once "conexion.php";
+
+Class ModeloBlog{
+
+      /*=============================================
+    MOSTRAR CONTENIDO TABLA BLOG
+    =============================================*/
+    static public function mdlMostrarBlog($tabla){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+        $stmt -> execute();
+        return $stmt -> fetch();
+
+        $stmt -> close();
+        $stmt = null;
+
+    }
+
+        /*=============================================
+    MOSTRAR CONTENIDO TABLA CATEGORIAS
+    =============================================*/
+    static public function mdlMostrarCategorias($tabla){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+
+        $stmt -> close();
+        $stmt = null;
+
+    }
+}   

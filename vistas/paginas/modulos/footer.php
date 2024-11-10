@@ -18,44 +18,45 @@ FOOTER
 
 						<div class="d-flex">
 
-							<div class="d-flex flex-column columna1">
-							
-								<figure class="p-2 m-0 photo1" vinculo="categorias.html">
+							<div class="d-flex flex-column columna1">								
+
+								
+								<figure class="p-2 m-0 photo1" vinculo="<?php echo $categorias[0]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[0]["img_categoria"]; ?>')">
 									
-									<p class="text-uppercase p-1 p-md-2 p-xl-1 small">Suramérica</p>
+									<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[0]["descripcion_categoria"]; ?></p>
 
 								</figure>
+								
+								<figure class="p-2 m-0 photo2" vinculo="<?php echo $categorias[4]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[4]["img_categoria"]; ?>')">
+					
+									<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[4]["descripcion_categoria"]; ?></p>
 
-								<figure class="p-2 m-0 photo2" vinculo="categorias.html">
-									
-									<p class="text-uppercase p-1 p-md-2 p-xl-1 small">Africa</p>
-
-								</figure>								
+								</figure>
 
 							</div>
 
 							<div class="d-flex flex-column flex-fill columna2">
 
-								<div class="d-block d-md-flex">
+								<div class="d-block d-md-flex">						
 
-									<figure class="p-2 m-0 flex-fill photo3" vinculo="categorias.html">
+									<figure class="p-2 m-0 flex-fill photo3" vinculo="<?php echo $categorias[1]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[1]["img_categoria"]; ?>')">
 
-										<p class="text-uppercase p-1 p-md-2 p-xl-1 small">Centromérica</p>
-										
+										<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[1]["descripcion_categoria"]; ?></p>
+						
 									</figure>
 
-									<figure class="p-2 m-0 flex-fill photo4" vinculo="categorias.html">
-										
-										<p class="text-uppercase p-1 p-md-2 p-xl-1 small">Europa</p>
+									<figure class="p-2 m-0 flex-fill photo4" vinculo="<?php echo $categorias[3]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[3]["img_categoria"]; ?>')">
+						
+										<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[3]["descripcion_categoria"]; ?></p>
 
 									</figure>
 
 								</div>
 
-								<figure class="p-2 m-0 photo5" vinculo="categorias.html">
+								<figure class="p-2 m-0 photo5" vinculo="<?php echo $categorias[2]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[2]["img_categoria"]; ?>')">
 
-									<p class="text-uppercase p-1 p-md-2 p-xl-1 small">Norteamérica</p>
-									
+									<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[2]["descripcion_categoria"]; ?></p>
+					
 								</figure>
 
 							</div>

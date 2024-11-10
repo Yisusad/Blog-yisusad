@@ -6,36 +6,20 @@ REDES SOCIALES PARA MÓVIL
 				
 	<ul class="d-flex justify-content-center p-0">
 		
-		<li>
-			<a href="https://www.facebook.com" target="_blank">
-				<i class="fab fa-facebook-f lead rounded-circle text-white mr-3 mr-sm-4"></i>
-			</a>
-		</li>
+		<?php
 
-		<li>
-			<a href="#" target="_blank">
-				<i class="fab fa-instagram lead rounded-circle text-white mr-3 mr-sm-4"></i>
-			</a>
-		</li>
+			$redeSociales = json_decode($blog["redes_sociales"], true);
 
-		<li>
-			<a href="#" target="_blank">
-				<i class="fab fa-twitter lead rounded-circle text-white mr-3 mr-sm-4"></i>
-			</a>
-		</li>
+			foreach ($redeSociales as $key => $value) {
 
-		<li>
-			<a href="#" target="_blank">
-				<i class="fab fa-youtube lead rounded-circle text-white mr-3 mr-sm-4"></i>
-			</a>
-		</li>
+				echo '<li>
+						<a href="'.$value["url"].'" target="_blank">
+							<i class="'.$value["icono"].' lead rounded-circle text-white mr-3 mr-sm-4"></i>
+						</a>
+					</li>';
+			}
 
-		<li>
-			<a href="#" target="_blank">
-				<i class="fab fa-snapchat-ghost lead rounded-circle text-white mr-3 mr-sm-4"></i>
-			</a>
-		</li>
-
+		?>	
 	</ul>
 
 </div>
