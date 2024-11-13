@@ -12,9 +12,11 @@ CONTENIDO INICIO
 
 			<div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
 
+				<!-- SE LISTAN LOS ARTÍCULOS DESDE LA BASE DE DATOS -->
+
 				<?php foreach ($articulos as $key => $value) : ?>
 
-					<!-- ARTÍCULO 01 -->
+					<!-- ARTÍCULOS -->
 
 					<div class="row">
 						
@@ -44,11 +46,13 @@ CONTENIDO INICIO
 					<hr class="mb-4 mb-lg-5" style="border: 1px solid #79FF39">
 					
 				<?php endforeach ?>
-				
+
+
+				<!-- PAGINACIÓN DE ARTÍCULOS -->
 				
 				<div class="container d-none d-md-block">
 					
-					<ul class="pagination justify-content-center"></ul>
+					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>"></ul>
 
 				</div>
 

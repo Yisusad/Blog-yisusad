@@ -42,4 +42,16 @@ Class ControladorBlog{
         return $respuesta;
     }
 
+    /*=============================================
+    MOSTRAR TOTAL ARTICULOS
+    =============================================*/
+    static public function ctrMostrarTotalArticulos(){
+
+        $tabla = "articulos";
+
+        $respuesta = ModeloBlog::mdlMostrarTotalArticulos($tabla);
+
+        return $respuesta;
+    } 
+
 }    
