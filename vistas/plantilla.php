@@ -2,7 +2,7 @@
 
 $blog = ControladorBlog::ctrMostrarBlog();
 $categorias = ControladorBlog::ctrMostrarCategorias();
-$articulos = ControladorBlog::ctrMostrarConInnerJoin();
+$articulos = ControladorBlog::ctrMostrarConInnerJoin(5);
 
 ?>
 
