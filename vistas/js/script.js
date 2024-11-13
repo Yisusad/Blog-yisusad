@@ -95,17 +95,23 @@ PAGINACIÓN
 =============================================*/
 
 var totalPaginas = Number($(".pagination").attr("totalPaginas"));
+var paginaActual = Number($(".pagination").attr("paginaActual"));
+var rutaActual = $("#rutaActual").val();
 
 $(".pagination").twbsPagination({
 	totalPages: totalPaginas,
+	startPage: paginaActual,
 	visiblePages: 4,
 	first: "Primero",
 	last: "Último",
 	prev: '<i class="fas fa-angle-left"></i>',
 	next: '<i class="fas fa-angle-right"></i>'
 
-});
+}).on("page", function(evt, page){
 
+	window.location = rutaActual+page;
+
+})
 
 /*=============================================
 SCROLL UP

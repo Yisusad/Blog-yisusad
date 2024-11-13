@@ -1,3 +1,14 @@
+<?php 
+	if(isset($_GET["pagina"]) && is_numeric($_GET["pagina"])){
+
+		$paginaActual = $_GET["pagina"];
+
+	}else{
+
+		$paginaActual = 1;	
+	}
+?>
+
 <!--=====================================
 CONTENIDO INICIO
 ======================================-->
@@ -52,7 +63,7 @@ CONTENIDO INICIO
 				
 				<div class="container d-none d-md-block">
 					
-					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>"></ul>
+					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>"></ul>
 
 				</div>
 
