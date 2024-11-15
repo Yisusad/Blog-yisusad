@@ -2,12 +2,10 @@
 
 $blog = ControladorBlog::ctrMostrarBlog();
 $categorias = ControladorBlog::ctrMostrarCategorias();
-$articulos = ControladorBlog::ctrMostrarConInnerJoin(0, 5);
+$articulos = ControladorBlog::ctrMostrarConInnerJoin(0, 5, null, null);
 $totalArticulos = ControladorBlog::ctrMostrarTotalArticulos();
 
 $totalPaginas = ceil((count($totalArticulos)/5));
-
-echo $totalPaginas
 
 ?>
 
@@ -184,7 +182,7 @@ echo $totalPaginas
 
 			include "paginas/categorias.php";
 
-		}else if(is_numeric($_GET["pagina"])){
+		}else if(is_numeric($_GET["pagina"]) && $_GET["pagina"] <= $totalPaginas){
 
 			include "paginas/inicio.php";
 
