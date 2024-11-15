@@ -21,13 +21,13 @@ FOOTER
 							<div class="d-flex flex-column columna1">								
 
 								
-								<figure class="p-2 m-0 photo1" vinculo="<?php echo $categorias[0]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[0]["img_categoria"]; ?>')">
+								<figure class="p-2 m-0 photo1" vinculo="<?php echo $categorias[0]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $blog["dominio"]; ?><?php echo $categorias[0]["img_categoria"]; ?>')">
 									
 									<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[0]["descripcion_categoria"]; ?></p>
 
 								</figure>
 								
-								<figure class="p-2 m-0 photo2" vinculo="<?php echo $categorias[4]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[4]["img_categoria"]; ?>')">
+								<figure class="p-2 m-0 photo2" vinculo="<?php echo $categorias[4]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $blog["dominio"]; ?><?php echo $categorias[4]["img_categoria"]; ?>')">
 					
 									<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[4]["descripcion_categoria"]; ?></p>
 
@@ -39,13 +39,13 @@ FOOTER
 
 								<div class="d-block d-md-flex">						
 
-									<figure class="p-2 m-0 flex-fill photo3" vinculo="<?php echo $categorias[1]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[1]["img_categoria"]; ?>')">
+									<figure class="p-2 m-0 flex-fill photo3" vinculo="<?php echo $categorias[1]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $blog["dominio"]; ?><?php echo $categorias[1]["img_categoria"]; ?>')">
 
 										<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[1]["descripcion_categoria"]; ?></p>
 						
 									</figure>
 
-									<figure class="p-2 m-0 flex-fill photo4" vinculo="<?php echo $categorias[3]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[3]["img_categoria"]; ?>')">
+									<figure class="p-2 m-0 flex-fill photo4" vinculo="<?php echo $categorias[3]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $blog["dominio"]; ?><?php echo $categorias[3]["img_categoria"]; ?>')">
 						
 										<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[3]["descripcion_categoria"]; ?></p>
 
@@ -53,7 +53,7 @@ FOOTER
 
 								</div>
 
-								<figure class="p-2 m-0 photo5" vinculo="<?php echo $categorias[2]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $categorias[2]["img_categoria"]; ?>')">
+								<figure class="p-2 m-0 photo5" vinculo="<?php echo $categorias[2]["ruta_categoria"]; ?>" style="background-image: url('<?php echo $blog["dominio"]; ?><?php echo $categorias[2]["img_categoria"]; ?>')">
 
 									<p class="text-uppercase p-1 p-md-2 p-xl-1 small"><?php echo $categorias[2]["descripcion_categoria"]; ?></p>
 					
@@ -108,18 +108,6 @@ FOOTER
 						<li>
 							<a href="#" target="_blank">
 								<i class="fab fa-twitter lead text-white mr-3 mr-sm-4"></i>
-							</a>
-						</li>
-
-						<li>
-							<a href="#" target="_blank">
-								<i class="fab fa-youtube lead text-white mr-3 mr-sm-4"></i>
-							</a>
-						</li>
-
-						<li>
-							<a href="#" target="_blank">
-								<i class="fab fa-snapchat-ghost lead text-white mr-3 mr-sm-4"></i>
 							</a>
 						</li>
 

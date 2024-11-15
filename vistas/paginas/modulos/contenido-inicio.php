@@ -1,7 +1,7 @@
 <?php 
-	if(isset($_GET["pagina"]) && is_numeric($_GET["pagina"])){
+	if(isset($rutas[0]) && is_numeric($rutas[0])){
 
-		$paginaActual = $_GET["pagina"];
+		$paginaActual = $rutas[0];
 
 	}else{
 
@@ -35,7 +35,7 @@ CONTENIDO INICIO
 
 							<a href="<?php echo $value["ruta_articulo"];?>"><h5 class="d-block d-lg-none py-3"><?php echo $value["titulo_articulo"];?></h5></a>
 				
-							<a href="<?php echo $value["ruta_articulo"];?>"><img src="<?php echo $value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"];?>" class="img-fluid" width="100%"></a>
+							<a href="<?php echo $value["ruta_articulo"];?>"><img src="<?php echo $blog["dominio"]; ?><?php echo $value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"];?>" class="img-fluid" width="100%"></a>
 
 						</div>
 
@@ -89,7 +89,7 @@ CONTENIDO INICIO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo10.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo10.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -113,7 +113,7 @@ CONTENIDO INICIO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo09.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo09.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -137,7 +137,7 @@ CONTENIDO INICIO
 							
 							<a href="articulos.html">
 
-								<img src="vistas/img/articulo08.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo08.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
 
 							</a>
 
@@ -162,19 +162,19 @@ CONTENIDO INICIO
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad01.jpg" class="img-fluid">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad01.jpg" class="img-fluid">
 
 				</div>
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad02.jpg" class="img-fluid">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
 
 				</div>	
 
 				<div class="my-4">
 					
-					<img src="vistas/img/ad05.png" class="img-fluid">
+					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad05.png" class="img-fluid">
 
 				</div>	
 				
