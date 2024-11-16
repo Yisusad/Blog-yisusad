@@ -13,6 +13,18 @@ if(isset($rutas[0])){
 
 if(isset($rutas[1]) && is_numeric($rutas[1])){
 
+	if($rutas[1] > $totalPaginas){
+
+		echo '<script>
+
+			window.location = "'.$blog["dominio"].'error404";
+
+		</script>';
+
+		return;
+
+	}
+
 	$paginaActual = $rutas[1];
 	$desde = ($rutas[1]-1)*5;
 	$cantidad = 5;
@@ -38,7 +50,7 @@ CONTENIDO CATEGORIA
 
 				<li class="breadcrumb-item inicio"><a href="<?php echo $blog["dominio"]; ?>">Inicio</a></li>
 
-				<li class="breadcrumb-item active">SI TIENES UNA CATEGORIA</li>
+				<li class="breadcrumb-item active"><?php echo $articulos[0]["descripcion_categoria"]; ?></li>
 
 			</ul>
 
@@ -102,28 +114,15 @@ CONTENIDO CATEGORIA
 
 					<h4>Etiquetas</h4>
 
+					<?php
+						$tags = json_decode($articulos[0]["p_claves_categoria"], true);
+					?>
 
-						<a href="#suramerica" class="btn btn-secondary btn-sm m-1">suramerica</a> 				
-					
-						<a href="#colombia" class="btn btn-secondary btn-sm m-1">colombia</a> 					
-					
-						<a href="#peru" class="btn btn-secondary btn-sm m-1">peru</a> 					
-					
-						<a href="#argentina" class="btn btn-secondary btn-sm m-1">argentina</a> 					
-					
-						<a href="#chile" class="btn btn-secondary btn-sm m-1">chile</a> 					
-					
-						<a href="#brasil" class="btn btn-secondary btn-sm m-1">brasil</a> 					
-					
-						<a href="#ecuador" class="btn btn-secondary btn-sm m-1">ecuador</a> 						
-					
-						<a href="#venezuela" class="btn btn-secondary btn-sm m-1">venezuela</a> 
-											
-						<a href="#paraguay" class="btn btn-secondary btn-sm m-1">paraguay</a> 						
-					
-						<a href="#uruguay" class="btn btn-secondary btn-sm m-1">uruguay</a> 						
-					
-						<a href="#bolivia" class="btn btn-secondary btn-sm m-1">bolivia</a> 					
+					<?php foreach ($tags as $key => $value) : ?>
+
+						<a href="#<?php echo $value;?>" class="btn btn-secondary btn-sm m-1"><?php echo $value;?></a>
+
+					<?php endforeach ?>			
 										
 				</div>	
 
