@@ -3,7 +3,7 @@
 $blog = ControladorBlog::ctrMostrarBlog();
 $categorias = ControladorBlog::ctrMostrarCategorias();
 $articulos = ControladorBlog::ctrMostrarConInnerJoin(0, 5, null, null);
-$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos();
+$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos(null, null);
 
 $totalPaginas = ceil((count($totalArticulos)/5));
 
@@ -31,7 +31,7 @@ $totalPaginas = ceil((count($totalArticulos)/5));
 				
 				$desde = ($rutas[0]-1)*5;
 				$cantidad = 5;
-				$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, $item, $valor);
+				$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, null, null);
 
 			}else{
 

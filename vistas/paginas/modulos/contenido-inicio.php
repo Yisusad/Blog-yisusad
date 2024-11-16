@@ -63,7 +63,7 @@ CONTENIDO INICIO
 				
 				<div class="container d-none d-md-block">
 					
-					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>"></ul>
+					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
 
 				</div>
 
