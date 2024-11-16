@@ -33,19 +33,19 @@ CONTENIDO INICIO
 						
 						<div class="col-12 col-lg-5">
 
-							<a href="<?php echo $value["ruta_articulo"];?>"><h5 class="d-block d-lg-none py-3"><?php echo $value["titulo_articulo"];?></h5></a>
+							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h5 class="d-block d-lg-none py-3"><?php echo $value["titulo_articulo"];?></h5></a>
 				
-							<a href="<?php echo $value["ruta_articulo"];?>"><img src="<?php echo $blog["dominio"]; ?><?php echo $value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"];?>" class="img-fluid" width="100%"></a>
+							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><img src="<?php echo $blog["dominio"]; ?><?php echo $value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"];?>" class="img-fluid" width="100%"></a>
 
 						</div>
 
 						<div class="col-12 col-lg-7 introArticulo">
 							
-							<a href="<?php echo $value["ruta_articulo"];?>"><h4 class="d-none d-lg-block"><?php echo $value["titulo_articulo"];?></h4></a>
+							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h4 class="d-none d-lg-block"><?php echo $value["titulo_articulo"];?></h4></a>
 							
 							<p class="my-2 my-lg-5"><?php echo $value["descripcion_articulo"];?></p>
 
-							<a href="<?php echo $value["ruta_articulo"];?>" class="float-right">Leer Más</a>
+							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>" class="float-right">Leer Más</a>
 
 							<div class="fecha"><?php echo $value["fecha_articulo"];?></div>
 
@@ -61,9 +61,9 @@ CONTENIDO INICIO
 
 				<!-- PAGINACIÓN DE ARTÍCULOS -->
 				
-				<div class="container d-none d-md-block">
+				<div class="container">
 					
-					<ul class="pagination justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
+					<ul class="pagination pagination-movil justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
 
 				</div>
 

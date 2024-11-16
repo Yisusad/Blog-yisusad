@@ -648,6 +648,12 @@ MOVIL VERTICAL (revisamos en 320px)
 	.opiniones p{
 		font-size:12px;
 	}
+
+	.pagination-movil{
+		display: flex;
+		justify-content: center;
+		margin-bottom: 50px;
+	}
 	
 }
 
