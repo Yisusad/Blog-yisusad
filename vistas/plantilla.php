@@ -20,85 +20,168 @@ $totalPaginas = ceil((count($totalArticulos)/5));
 	<?php
 
 		$validarRuta = "";
-		
+
 		if(isset($_GET["pagina"])){
 
-			//explode sirve para convertir un string en un array
 			$rutas = explode("/", $_GET["pagina"]);
 
-
-			if(is_numeric($rutas[0])){
+			foreach ($categorias as $key => $value) {
+			
+				if(!is_numeric($rutas[0]) && $rutas[0] == $value["ruta_categoria"]){
 				
-				$desde = ($rutas[0]-1)*5;
-				$cantidad = 5;
-				$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, null, null);
+					$validarRuta = "categorias";
 
-			}else{
+					break;
+				}		
+				
+			}
 
-				foreach ($categorias as $key => $value) {
+			if(isset($rutas[1])){
 
-					if($rutas[0] == $value["ruta_categoria"]){
-	
+				if(is_numeric($rutas[1])){
+
+					foreach ($categorias as $key => $value) {
+					
 						$validarRuta = "categorias";
-	
+
 						break;
+					}		
+					
+				}else{
+
+					foreach ($totalArticulos as $key => $value) {
+				
+						if(!is_numeric($rutas[1]) && $rutas[1] == $value["ruta_articulo"]){
+						
+							$validarRuta = "articulos";
+
+							break;
+						}		
+					
 					}
-								
+
 				}
 
 			}
-			
+
 			if($validarRuta == "categorias"){
 
-				echo '<title>'.$blog["titulo"].' | '.$value["descripcion_categoria"].'</title>
-					<meta name="title" content="'.$value["titulo_categoria"].'">
-					<meta name="description" content="'.$value["descripcion_categoria"].'">';
+				echo '	<title>'.$blog["titulo"].' | '.$value["descripcion_categoria"].'</title>
 
-					$palabras_claves = json_decode($value["p_claves_categoria"], true);
-					$p_claves = "";
-		
-					foreach ($palabras_claves as $key => $value) {
-						$p_claves .= $value.", ";
-					}
-		
-					$p_claves = substr($p_claves, 0, -2);		  
-		
-				echo '<meta name="keywords" content="'.$p_claves.'">';
+				<meta name="title" content="'.$value["titulo_categoria"].'>">
+				<meta name="description" content="'.$value["descripcion_categoria"].'">';
+
+				echo '<meta property="og:site_name" content="'.$value["titulo_categoria"].'">
+				<meta property="og:title" content="'.$value["titulo_categoria"].'">
+				<meta property="og:description" content="'.$value["descripcion_categoria"].'">
+				<meta property="og:type" content="Type">
+				<meta property="og:image" content="'.$blog["dominio"].$value["img_categoria"].'">
+				<meta property="og:url" content="'.$blog["dominio"].$value["ruta_categoria"].'">';	
+
+				$palabras_claves = json_decode($value["p_claves_categoria"], true);
+
+				$p_claves = "";
+				
+				foreach ($palabras_claves as $key => $value) {
+					
+					$p_claves .= $value.", ";
+					
+				}
+
+				$p_claves = substr($p_claves, 0, -2);
+
+				echo '<meta name="keywords" content="'.$p_claves.'">';	
+
+				
+
+			}else if($validarRuta == "articulos"){
+
+				echo '	<title>'.$blog["titulo"].' | '.$value["titulo_articulo"].'</title>
+
+				<meta name="title" content="'.$value["titulo_articulo"].'">
+				<meta name="description" content="'.$value["descripcion_articulo"].'">';
+
+				echo '<meta property="og:site_name" content="'.$value["titulo_articulo"].'">
+				<meta property="og:title" content="'.$value["titulo_articulo"].'">
+				<meta property="og:description" content="'.$value["descripcion_articulo"].'">
+				<meta property="og:type" content="Type">
+				<meta property="og:image" content="'.$blog["dominio"].$value["portada_articulo"].'">
+				<meta property="og:url" content="'.$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"].'">';	
+
+				$palabras_claves = json_decode($value["p_claves_articulo"], true);
+
+				$p_claves = "";
+				
+				foreach ($palabras_claves as $key => $value) {
+					
+					$p_claves .= $value.", ";
+					
+				}
+
+				$p_claves = substr($p_claves, 0, -2);
+
+				echo '<meta name="keywords" content="'.$p_claves.'">';	
+
 
 
 			}else{
 
-				echo '<title>'.$blog["titulo"].'</title>
-					<meta name="title" content="'.$blog["titulo"].'">
+				echo '	<title>'.$blog["titulo"].'</title>
+
+				<meta name="title" content="'.$blog["titulo"].'>">
+				<meta name="description" content="'.$blog["descripcion"].'">';
+
+				$palabras_claves = json_decode($blog["palabras_claves"], true);
+
+				$p_claves = "";
+				
+				foreach ($palabras_claves as $key => $value) {
+					
+					$p_claves .= $value.", ";
+					
+				}
+
+				$p_claves = substr($p_claves, 0, -2);
+
+				echo '<meta name="keywords" content="'.$p_claves.'">';
+
+				echo '<meta property="og:site_name" content="'.$blog["titulo"].'">
+				<meta property="og:title" content="'.$blog["titulo"].'">
+				<meta property="og:description" content="'.$blog["descripcion"].'">
+				<meta property="og:type" content="Type">
+				<meta property="og:image" content="'.$blog["dominio"].$blog["portada"].'">
+				<meta property="og:url" content="'.$blog["dominio"].'">';
+
+			}
+
+		}else{
+
+			echo '	<title>'.$blog["titulo"].'</title>
+
+					<meta name="title" content="'.$blog["titulo"].'>">
 					<meta name="description" content="'.$blog["descripcion"].'">';
 
 					$palabras_claves = json_decode($blog["palabras_claves"], true);
+
 					$p_claves = "";
-		
+					
 					foreach ($palabras_claves as $key => $value) {
+						
 						$p_claves .= $value.", ";
+						
 					}
-		
-					$p_claves = substr($p_claves, 0, -2);		  
-		
-				echo '<meta name="keywords" content="'.$p_claves.'">';
 
-			}
-		}else {
-			echo '<title>'.$blog["titulo"].'</title>
-				  <meta name="title" content="'.$blog["titulo"].'">
-				  <meta name="description" content="'.$blog["descripcion"].'">';
+					$p_claves = substr($p_claves, 0, -2);
 
-				  $palabras_claves = json_decode($blog["palabras_claves"], true);
-				  $p_claves = "";
-		  
-				  foreach ($palabras_claves as $key => $value) {
-					  $p_claves .= $value.", ";
-				  }
-		  
-				  $p_claves = substr($p_claves, 0, -2);		  
-			
 			echo '<meta name="keywords" content="'.$p_claves.'">';
+
+			echo '<meta property="og:site_name" content="'.$blog["titulo"].'">
+				<meta property="og:title" content="'.$blog["titulo"].'">
+				<meta property="og:description" content="'.$blog["descripcion"].'">
+				<meta property="og:type" content="Type">
+				<meta property="og:image" content="'.$blog["dominio"].$blog["portada"].'">
+				<meta property="og:url" content="'.$blog["dominio"].'">';
+
 		}
 	?>
 
@@ -167,42 +250,115 @@ $totalPaginas = ceil((count($totalArticulos)/5));
 	Navegar entre páginas
 	=============================================*/	
 
-	$validarRuta = "";	
+	$validarRuta = "";
 
 	if(isset($_GET["pagina"])){
 
-		foreach ($categorias as $key => $value) {
+		$rutas = explode("/", $_GET["pagina"]);
+
+		
+		if(is_numeric($rutas[0])){
+
+			$desde = ($rutas[0] -1)* 5;
+
+			$cantidad = 5;
+
+			$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, null, null);
+
+		}else{
+
+			foreach ($categorias as $key => $value) {
 			
-			if($rutas[0] == $value["ruta_categoria"]){
+				if($rutas[0] == $value["ruta_categoria"]){
 
-				$validarRuta = "categorias";
+					$validarRuta = "categorias";
 
-				break;
+					break;
+
+				}else if($rutas[0] == "sobre-mi"){
+
+					$validarRuta = "sobre-mi";
+
+					break;
+
+				}else{
+
+					$validarRuta = "buscador";
+				}
+			}
+
+		}
+
+		/*=============================================
+		Indice 1: Rutas de Artículos o Paginación de categorías
+		=============================================*/
+
+		if(isset($rutas[1])){
+
+			if(is_numeric($rutas[1])){
+
+				$desde = ($rutas[1] -1)* 5;
+
+				$cantidad = 5;
+
+				$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, null, null);
+
+			}else{
+
+				foreach ($totalArticulos as $key => $value) {
+				
+					if($rutas[1] == $value["ruta_articulo"]){
+
+						$validarRuta = "articulos";
+
+						break;
+
+					}
+				}
 
 			}
-		}	
 
+
+		}
+
+		/*=============================================
+		Validar las rutas
+		=============================================*/
 		if($validarRuta == "categorias"){
 
 			include "paginas/categorias.php";
+
+		/*}else if($validarRuta == "buscador"){
+
+			include "paginas/buscador.php";
+
+		}else if($validarRuta == "sobre-mi"){
+
+			include "paginas/sobre-mi.php";*/
+
+		}else if($validarRuta == "articulos"){
+
+			include "paginas/articulos.php";
 
 		}else if(is_numeric($rutas[0]) && $rutas[0] <= $totalPaginas){
 
 			include "paginas/inicio.php";
 
-		}else if(isset($rutas[1]) && is_numeric($rutas[1])) {
+		}else if(isset($rutas[1]) && is_numeric($rutas[1])){
 
 			include "paginas/inicio.php";
+
 		}else{
-			
+
 			include "paginas/404.php";
 		}
 
-	}else {
+
+	}else{
 
 		include "paginas/inicio.php";
-	
-	}
+
+	}	
 
 	
 

@@ -9,11 +9,34 @@ if(isset($rutas[0])){
 
 }
 
-//Revisar si viene paginación
+/*=============================================
+Revisar si viene paginación de categorías
+=============================================*/
 
-if(isset($rutas[1]) && is_numeric($rutas[1])){
+if(isset($rutas[1])){
 
-	if($rutas[1] > $totalPaginas){
+	if(is_numeric($rutas[1])){
+
+		if($rutas[1] > $totalPaginas){
+
+			echo '<script>
+
+				window.location = "'.$blog["dominio"].'error404";
+
+			</script>';
+
+			return;
+
+		}
+
+		$paginaActual = $rutas[1];
+
+		$desde = ($rutas[1] - 1)*5;
+		$cantidad = 5;
+
+		$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, "ruta_categoria", $rutas[0]);
+
+	}else{
 
 		echo '<script>
 
@@ -22,16 +45,13 @@ if(isset($rutas[1]) && is_numeric($rutas[1])){
 		</script>';
 
 		return;
-
 	}
 
-	$paginaActual = $rutas[1];
-	$desde = ($rutas[1]-1)*5;
-	$cantidad = 5;
-	$articulos = ControladorBlog::ctrMostrarConInnerJoin($desde, $cantidad, "ruta_categoria", $rutas[0]);
-}else {
+
+}else{
 
 	$paginaActual = 1;
+
 }
 
 ?>
