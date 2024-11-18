@@ -148,61 +148,25 @@ CONTENIDO ARTÍCULO
 							
 							<ul class="slide-area">
 								
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
+								<?php foreach ($totalArticulos as $key => $value) : ?>
+								
+									<li class="px-3">
+										
+										<a href="<?php echo $blog["dominio"].$articulo[0]["ruta_categoria"]."/".$value["ruta_articulo"]; ?>" class="text-secondary">
 
-										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo01.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+											<img src="<?php echo $blog["dominio"].$value["portada_articulo"]; ?>" alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
 
-										<h6 class="py-2">Type something here</h6>
+											<h6 class="py-2"><?php echo $value["titulo_articulo"]; ?></h6>
 
-									</a>
+										</a>
 
-									 <p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
+										<p class="small"><?php echo substr($value["descripcion_articulo"], 0, -110)."..."; ?></p>
 
-								</li>
+									</li>		
 
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
-
-										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo02.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-									
-										<h6 class="py-2">Type something here</h6>
-
-									</a>
-
-									<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
-
-								</li>
-
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
-
-										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo03.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-									
-										<h6 class="py-2">Type something here</h6>
-
-									</a>
-
-									<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
-
-								</li>
-
-								<li class="px-3">
-									
-									<a href="articulos.html" class="text-secondary">
-
-										<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo04.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-									
-										<h6 class="py-2">Type something here</h6>
-
-									</a>
-
-									<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem quibusdam sint porro...</p>
-
-								</li>
+								<?php endforeach?>
+								
+														
 
 							</ul>
 
