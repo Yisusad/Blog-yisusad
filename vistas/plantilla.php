@@ -231,6 +231,10 @@ $totalPaginas = ceil((count($totalArticulos)/5));
 	<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/scrollUP.js"></script>
 	<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/jquery.easing.js"></script>
 
+	<!-- Shape Share -->
+	<!-- https://www.jqueryscript.net/social-media/Social-Share-Plugin-jQuery-Open-Graph-Shape-Share.html -->
+	<script src="<?php echo $blog["dominio"]; ?>vistas/js/plugins/shape.share.js"></script>
+
 </head>
 
 <body>

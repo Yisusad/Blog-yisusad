@@ -153,3 +153,10 @@ $(".deslizadorArticulos").jdSlider({
 })
 
 
+/*=============================================
+COMPARTIR REDES SOCIALES
+=============================================*/
+
+$('.social-share').shapeShare();
+
+
