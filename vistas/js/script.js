@@ -160,3 +160,11 @@ COMPARTIR REDES SOCIALES
 $('.social-share').shapeShare();
 
 
+/*=============================================
+REVISAR SI HAY OPINIONES
+=============================================*/
+
+if(document.querySelector(".opiniones").childNodeslength == 1){
+
+	$(".opiniones").html('<p class="pl-3 text-secondary">Este artículo no tiene opiniones!</p>')
+}
