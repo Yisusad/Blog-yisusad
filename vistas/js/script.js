@@ -168,3 +168,41 @@ if(document.querySelector(".opiniones").childNodeslength == 1){
 
 	$(".opiniones").html('<p class="pl-3 text-secondary">Este artículo no tiene opiniones!</p>')
 }
+
+/*=============================================
+SUBIR FOTO TEMPORAL
+=============================================*/
+$("#fotoOpinion").change(function(){
+	
+	var imagen = this.files[0];
+
+	//Validamos el formato de la imagen
+	if(imagen["type"] != "image/jpeg" && imagen["type"] != "image/png"){
+
+		$("#fotoOpinion").val("");
+
+		$("fotoOpinion").after('<p class="pl-3 text-danger">El formato de la imagen debe ser JPG o PNG.</p>')
+
+		return;
+		
+	}else if(imagen["size"] > 2000000){
+
+		$("#fotoOpinion").val("");
+
+		$("fotoOpinion").after('<p class="pl-3 text-danger">El tamaño de la imagen debe ser menor a 2MB.</p>')
+
+		return;
+	}else{
+
+		var datosImagen = new FileReader;
+
+		datosImagen.readAsDataURL(imagen);
+
+		datosImagen.onload = function(){
+
+			var rutaImagen = datosImagen.result;
+
+			$(".prevFotoOpinion").attr("src",rutaImagen);
+		}
+	}
+})

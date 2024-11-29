@@ -262,7 +262,7 @@ CONTENIDO ARTÍCULO
 
 					<!-- FORMULARIO DE OPINIONES -->
 					
-					<form method="post">
+					<form method="post" enctype="multipart/form-data">
 						<!-- Guardar el id del articulo para la base de datos -->
 						<input type="hidden" name="id_art" value="<?php echo $articulo[0]["id_articulo"]; ?>">
 						
@@ -282,11 +282,14 @@ CONTENIDO ARTÍCULO
 
 							</div>
 
-							<div class="d-none d-md-block col-md-4 col-lg-3">
-								
-								<img src="<?php echo $blog["dominio"]; ?>vistas/img/subirFoto.png" class="img-fluid mt-md-3 mt-xl-2">
+							<!-- BOTON DE SUBIR FOTO -->
+							<input type="file" name="fotoOpinion" class="d-none" id="fotoOpinion">
 
-							</div>
+							<label for="fotoOpinion" class="d-none d-md-block col-md-4 col-lg-3">
+								
+								<img src="<?php echo $blog["dominio"]; ?>vistas/img/subirFoto.png" class="img-fluid mt-md-3 mt-xl-2 prevFotoOpinion">
+
+							</label>
 
 						</div>	
 
