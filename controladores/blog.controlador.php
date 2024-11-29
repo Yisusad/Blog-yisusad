@@ -74,80 +74,104 @@ Class ControladorBlog{
 
     static public function ctrEnviarOpinion(){
 
-        if (isset($_POST["nombre_opinion"])) {
-            if(preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/', $_POST["nombre_opinion"]) &&
+		if(isset($_POST["nombre_opinion"])){
+
+			if(preg_match('/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/', $_POST["nombre_opinion"]) &&
 			   preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["correo_opinion"]) &&
 			   preg_match('/^[=\\$\\;\\*\\"\\?\\¿\\!\\¡\\:\\.\\,\\0-9a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/',  $_POST["contenido_opinion"])){
 
-                /*=============================================
-                 validar foto
-                =============================================*/
+				/*=============================================
+				VALIDACIÓN FOTO LADO SERVIDOR
+				=============================================*/
 
-                if (isset($_FILES["fotoOpinion"]["tmp_name"]) && !empty($_FILES["fotoOpinion"]["tmp_name"])){
+				if(isset($_FILES["fotoOpinion"]["tmp_name"]) && !empty($_FILES["fotoOpinion"]["tmp_name"])){
 
-                    /*=============================================
-                    capturar ancho y alto de la imagen y definir nuevos valores
-                    =============================================*/
+					/*=============================================
+					CAPTURAR ANCHO Y ALTO ORIGINAL DE LA IMAGEN Y DEFINIR LOS NUEVOS VALORES
+					=============================================*/
 
-                    list($ancho, $alto) = getimagesize($_FILES["fotoOpinion"]["tmp_name"]);
+					list($ancho, $alto) = getimagesize($_FILES["fotoOpinion"]["tmp_name"]);
 
-                    $nuevoAncho = 128;
-                    $nuevoAlto = 128;
+					$nuevoAncho = 128;
+					$nuevoAlto = 128;
 
-                    /*=============================================
-                    creamos el directorio donde guardaremos la imagen
-                    =============================================*/
+					/*=============================================
+					CREAMOS EL DIRECTORIO DONDE VAMOS A GUARDAR LA FOTO DEL USUARIO
+					=============================================*/
 
-                    $directorio = "vistas/img/usuarios/";
+					$directorio = "vistas/img/usuarios/";
 
-                    if($_FILES["fotoOpinion"]["type"] == "image/jpeg"){
+					/*=============================================
+					DE ACUERDO AL TIPO DE IMAGEN APLICAMOS LAS FUNCIONES POR DEFECTO DE PHP
+					=============================================*/
 
-                        $aleatorio = mt_rand(100,9999);
-                        $ruta = $directorio.$aleatorio.".jpg";
-                        $origen = imagecreatefromjpeg($_FILES["fotoOpinion"]["tmp_name"]);
-                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-                        imagejpeg($destino, $ruta);
-                        
-                    } elseif($_FILES["fotoOpinion"]["type"] == "image/png"){
-                        
-                        $aleatorio = mt_rand(100,9999);
-                        $ruta = $directorio.$aleatorio.".png";
-                        $origen = imagecreatefrompng($_FILES["fotoOpinion"]["tmp_name"]);
-                        $destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-                        imagealphablending($destino, false);
-                        imagesavealpha($destino, true);
-                        imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-                        imagepng($destino, $ruta);
+					if($_FILES["fotoOpinion"]["type"] == "image/jpeg"){
 
-                    }else{
-                        return "error-formato";
-                    }
+						$aleatorio = mt_rand(100, 9999);
 
-                    
-                } else {
+						$ruta = $directorio.$aleatorio.".jpg";
 
-                    $ruta = "vistas/img/usuarios/default.png";
-                }    
+						$origen = imagecreatefromjpeg($_FILES["fotoOpinion"]["tmp_name"]);
 
-                $tabla = "opiniones";
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
 
-                $datos = array("id_art" => $_POST["id_art"],
-                               "nombre_opinion" => $_POST["nombre_opinion"],
-                               "correo_opinion" => $_POST["correo_opinion"],
-                               "contenido_opinion" => $_POST["contenido_opinion"],
-                               "foto_opinion" => $ruta,
-                               "fecha_opinion" => date("Y-m-d"),
-                               "id_adm" => 1);
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
 
-                $respuesta = ModeloBlog::mdlEnviarOpinion($tabla, $datos);
-            
-            }else{
+						imagejpeg($destino, $ruta);
 
-                $respuesta = "error";
 
-            }
-                        
-        }
-    }
+					}else if($_FILES["fotoOpinion"]["type"] == "image/png"){
+
+						$aleatorio = mt_rand(100, 9999);
+
+						$ruta = $directorio.$aleatorio.".png";
+
+						$origen = imagecreatefrompng($_FILES["fotoOpinion"]["tmp_name"]);
+
+						$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+						imagealphablending($destino, FALSE);
+			
+						imagesavealpha($destino, TRUE);	
+
+						imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+						imagepng($destino, $ruta);
+
+					}else{
+
+						return "error-formato";	
+					}
+
+				}else{
+
+
+					$ruta = "vistas/img/usuarios/default.png";
+				}
+				
+
+				$tabla = "opiniones";
+
+				$datos = array("id_art" => $_POST["id_art"],
+							   "nombre_opinion" => $_POST["nombre_opinion"],
+							   "correo_opinion" => $_POST["correo_opinion"],
+							   "foto_opinion" => $ruta,
+							   "contenido_opinion" => $_POST["contenido_opinion"],
+							   "fecha_opinion"=> date('Y-m-d'),
+							    "id_adm" => 1
+							   );
+
+				$respuesta = ModeloBlog::mdlEnviarOpinion($tabla, $datos);
+
+				return $respuesta;
+
+			}else{
+
+				return "error";
+
+			}
+
+		}
+
+	}
 }    
