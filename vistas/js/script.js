@@ -173,6 +173,8 @@ if(document.querySelector(".opiniones").childNodeslength == 1){
 SUBIR FOTO TEMPORAL
 =============================================*/
 $("#fotoOpinion").change(function(){
+
+	$(".alert").remove();
 	
 	var imagen = this.files[0];
 
