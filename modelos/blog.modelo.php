@@ -69,7 +69,7 @@ Class ModeloBlog{
             return $stmt -> fetchAll();
 
         }else{
-            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+            $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item ORDER BY id_articulo DESC");
             $stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
             $stmt -> execute();
             return $stmt -> fetchAll();
@@ -115,13 +115,12 @@ Class ModeloBlog{
 
 			return "ok";
 
+            $stmt -> close();
+            $stmt = null;
+
 		}else{
 
 			print_r(Conexion::conectar()->errorInfo());
 		}
-
-		$stmt-> close();
-
-		$stmt = null;
 	}
 }   
