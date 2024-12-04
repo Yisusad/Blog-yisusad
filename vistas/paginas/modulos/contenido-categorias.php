@@ -7,6 +7,8 @@ if(isset($rutas[0])){
 	$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos("id_cat", $articulos[0]["id_cat"]);
 	$totalPaginas = ceil((count($totalArticulos)/5));
 
+	$articulosDestacados = ControladorBlog::ctrArticulosDestacados("id_cat", $articulos[0]["id_cat"]);
+
 }
 
 /*=============================================
@@ -150,77 +152,38 @@ CONTENIDO CATEGORIA
 					
 					<h4>Artículos Destacados</h4>
 
-					<div class="d-flex my-3">
+					<?php foreach ($articulosDestacados as $key => $value) :
 						
-						<div class="w-100 w-xl-50 pr-3 pt-2">
-							
-							<a href="articulos.html">
-
-								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo01.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-
-							</a>
-
-						</div>
-
-						<div>
-
-							<a href="articulos.html" class="text-secondary">
-
-								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-							</a>
-
-						</div>
-
-					</div>
-
-					<div class="d-flex my-3">
+						$categoria = ControladorBlog::ctrMostrarCategorias("id_categoria", $value["id_cat"]);
 						
-						<div class="w-100 w-xl-50 pr-3 pt-2">
-							
-							<a href="articulos.html">
-
-								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo02.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
-
-							</a>
-
-						</div>
-
-						<div>
-
-							<a href="articulos.html" class="text-secondary">
-
-								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-							</a>
-
-						</div>
-
-					</div>
-
-					<div class="d-flex my-3">
 						
-						<div class="w-100 w-xl-50 pr-3 pt-2">
-							
-							<a href="articulos.html">
+					?>
 
-								<img src="<?php echo $blog["dominio"]; ?>vistas/img/articulo03.png" alt="Lorem ipsum dolor sit amet" class="img-fluid">
+						<div class="d-flex my-3">
+						
+								<div class="w-100 w-xl-50 pr-3 pt-2">
+									
+									<a href="<?php echo $blog["dominio"].$categoria[0]["ruta_categoria"]."/".$value["ruta_articulo"]; ?>">
 
-							</a>
+										<img src="<?php echo $blog["dominio"].$value["portada_articulo"]; ?>" alt="<?php echo $value["titulo_articulo"]; ?>" class="img-fluid">
+
+									</a>
+
+								</div>
+
+								<div>
+
+									<a href="<?php echo $blog["dominio"].$categoria[0]["ruta_categoria"]."/".$value["ruta_articulo"]; ?>" class="text-secondary">
+
+										<p class="small"><?php echo substr($value["descripcion_articulo"], 0, 100)."..."; ?></p>
+
+									</a>
+
+								</div>
 
 						</div>
 
-						<div>
-
-							<a href="articulos.html" class="text-secondary">
-
-								<p class="small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-
-							</a>
-
-						</div>
-
-					</div>
+					<?php endforeach ?>	
 
 
 				</div>

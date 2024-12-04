@@ -4,6 +4,8 @@
 		$articulo = ControladorBlog::ctrMostrarConInnerJoin(0, 1, "ruta_articulo", $rutas[1]);
 		$totalArticulos = ControladorBlog::ctrMostrarTotalArticulos("id_cat", $articulo[0]["id_cat"]);
 		$opiniones = ControladorBlog::ctrMostrarOpiniones("id_art", $articulo[0]["id_articulo"]);
+		$actualizarVistasArticulo = ControladorBlog::ctrActualizarVistas($rutas[1]);
+
 	}
 	/*============================================
 	Limitar artículos recientes de Foreach
