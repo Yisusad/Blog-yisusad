@@ -1,14 +1,14 @@
 <?php 
-	if(isset($rutas[0]) && is_numeric($rutas[0])){
+	if(isset($rutas[0])){
 
-		$paginaActual = $rutas[0];
+        $articulos = ControladorBlog::ctrBuscador(0, 5, $rutas[0]);
+        $totalArticulos = ControladorBlog::ctrTotalBuscador($rutas[0]);
+        $totalPaginas = ceil(count($totalArticulos)/5);
+        $paginaActual = 1;	
 
-	}else{
+        $articulosDestacados = ControladorBlog::ctrArticulosDestacados(null, null);
 
-		$paginaActual = 1;	
 	}
-
-	$articulosDestacados = ControladorBlog::ctrArticulosDestacados(null, null);
 ?>
 
 <!--=====================================
@@ -18,6 +18,17 @@ CONTENIDO INICIO
 <div class="container-fluid bg-white contenidoInicio pb-4">
 	
 	<div class="container">
+
+        
+		<!-- BREADCRUMB -->
+
+			<ul class="breadcrumb bg-white p-0 mb-2 mb-md-4">
+
+                <li class="breadcrumb-item inicio"><a href="<?php echo $blog["dominio"]; ?>">Inicio</a></li>
+
+                <li class="breadcrumb-item active">Articulos relacionados con "<?php echo $rutas[0]; ?>"</li>
+
+            </ul>
 		
 		<div class="row">
 			
@@ -26,48 +37,57 @@ CONTENIDO INICIO
 			<div class="col-12 col-md-8 col-lg-9 p-0 pr-lg-5">
 
 				<!-- SE LISTAN LOS ARTÍCULOS DESDE LA BASE DE DATOS -->
+                 <?php if(count($articulos) != 0) : ?>   
 
-				<?php foreach ($articulos as $key => $value) : ?>
+                    <?php foreach ($articulos as $key => $value) : ?>
 
-					<!-- ARTÍCULOS -->
+                        <!-- ARTÍCULOS -->
 
-					<div class="row">
-						
-						<div class="col-12 col-lg-5">
+                        <div class="row">
+                            
+                            <div class="col-12 col-lg-5">
 
-							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h5 class="d-block d-lg-none py-3"><?php echo $value["titulo_articulo"];?></h5></a>
-				
-							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><img src="<?php echo $blog["dominio"]; ?><?php echo $value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"];?>" class="img-fluid" width="100%"></a>
+                                <a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h5 class="d-block d-lg-none py-3"><?php echo $value["titulo_articulo"];?></h5></a>
+                    
+                                <a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><img src="<?php echo $blog["dominio"]; ?><?php echo $value["portada_articulo"];?>" alt="<?php echo $value["titulo_articulo"];?>" class="img-fluid" width="100%"></a>
 
-						</div>
+                            </div>
 
-						<div class="col-12 col-lg-7 introArticulo">
-							
-							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h4 class="d-none d-lg-block"><?php echo $value["titulo_articulo"];?></h4></a>
-							
-							<p class="my-2 my-lg-5"><?php echo $value["descripcion_articulo"];?></p>
+                            <div class="col-12 col-lg-7 introArticulo">
+                                
+                                <a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h4 class="d-none d-lg-block"><?php echo $value["titulo_articulo"];?></h4></a>
+                                
+                                <p class="my-2 my-lg-5"><?php echo $value["descripcion_articulo"];?></p>
 
-							<a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>" class="float-right">Leer Más</a>
+                                <a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>" class="float-right">Leer Más</a>
 
-							<div class="fecha"><?php echo $value["fecha_articulo"];?></div>
+                                <div class="fecha"><?php echo $value["fecha_articulo"];?></div>
 
-						</div>
-
-
-					</div>
-
-					<hr class="mb-4 mb-lg-5" style="border: 1px solid #79FF39">
-					
-				<?php endforeach ?>
+                            </div>
 
 
-				<!-- PAGINACIÓN DE ARTÍCULOS -->
-				
-				<div class="container">
-					
-					<ul class="pagination pagination-movil justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
+                        </div>
 
-				</div>
+                        <hr class="mb-4 mb-lg-5" style="border: 1px solid #79FF39">
+                        
+                    <?php endforeach ?>
+
+               
+
+
+                        <!-- PAGINACIÓN DE ARTÍCULOS -->
+                        
+                        <div class="container">
+                            
+                            <ul class="pagination pagination-movil justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
+
+                        </div>
+
+                <?php else : ?>
+                    <h1>Lo siento!</h1>
+                    <h3>No se encontraron resultados</h3>
+                    <a href="<?php echo $blog["dominio"]; ?>" class="btn btn-primary">Volver</a>
+                <?php endif ?>
 
 			</div>
 
