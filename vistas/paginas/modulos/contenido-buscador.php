@@ -24,6 +24,8 @@
 		$paginaActual = 1;	
 	}
 
+	$anuncios = ControladorBlog::ctrTraerAnuncios("inicio");
+
 ?>
 
 <!--=====================================
@@ -153,23 +155,13 @@ CONTENIDO INICIO
 
 				<!-- PUBLICIDAD -->
 
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad01.jpg" class="img-fluid">
-
-				</div>
-
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
-
-				</div>	
-
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad05.png" class="img-fluid">
-
-				</div>	
+				<?php foreach ($anuncios as $key => $value) : ?>					
+					<?php
+						if($value["pagina_anuncio"] == "inicio"){
+							echo $value["codigo_anuncio"];
+						}	 
+					?>
+				<?php endforeach ?>
 				
 			</div>
 

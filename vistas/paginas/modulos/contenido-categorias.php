@@ -56,6 +56,7 @@ if(isset($rutas[1])){
 
 }
 
+$anuncios = ControladorBlog::ctrTraerAnuncios("categorias");
 ?>
 
 <!--=====================================
@@ -190,23 +191,13 @@ CONTENIDO CATEGORIA
 
 				<!-- PUBLICIDAD -->
 
-				<div class="mb-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
-
-				</div>
-
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
-
-				</div>	
-
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad05.png" class="img-fluid">
-
-				</div>	
+				<?php foreach ($anuncios as $key => $value) : ?>					
+					<?php
+						if($value["pagina_anuncio"] == "categorias"){
+							echo $value["codigo_anuncio"];
+						}	 
+					?>
+				<?php endforeach ?>
 				
 			</div>
 

@@ -221,4 +221,16 @@ Class ModeloBlog{
 		$stmt = null;
 
 	}
+
+    /*=============================================
+    MODELO TRAER ANUNCIOS
+    =============================================*/
+
+    static public function mdlTraerAnuncios($tabla, $valor){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE pagina_anuncio = :pagina_anuncio");
+        $stmt -> bindParam(":pagina_anuncio", $valor, PDO::PARAM_INT);
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+    }
 }   

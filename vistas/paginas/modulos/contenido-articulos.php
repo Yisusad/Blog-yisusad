@@ -21,6 +21,7 @@
 		
 	}
 
+	$anuncios = ControladorBlog::ctrTraerAnuncios("articulos");
 ?>
 <!--=====================================
 CONTENIDO ARTÍCULO
@@ -435,24 +436,15 @@ CONTENIDO ARTÍCULO
 				</div>
 
 				<!-- PUBLICIDAD -->
+				
+				<?php foreach ($anuncios as $key => $value) : ?>
 
-				<div class="mb-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad03.png" class="img-fluid">
-
-				</div>
-
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad02.jpg" class="img-fluid">
-
-				</div>	
-
-				<div class="my-4">
-					
-					<img src="<?php echo $blog["dominio"]; ?>vistas/img/ad06.png" class="img-fluid">
-
-				</div>	
+       				<?php
+						if($value["pagina_anuncio"] == "articulos"){
+							echo $value["codigo_anuncio"];
+						}	 
+					?>	
+				<?php endforeach ?>
 				
 			</div>
 
