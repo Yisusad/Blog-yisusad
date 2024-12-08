@@ -139,8 +139,8 @@ CONTENIDO CATEGORIA
 					?>
 
 					<?php foreach ($tags as $key => $value) : ?>
-
-						<a href="#<?php echo $value;?>" class="btn btn-secondary btn-sm m-1"><?php echo $value;?></a>
+						
+						<a href="<?php echo $blog["dominio"].preg_replace('/[0-9ñÑáéíóúÁÉÍÓÚ ]/', "_", $value);?>" class="btn btn-secondary btn-sm m-1"><?php echo $value;?></a>
 
 					<?php endforeach ?>			
 										

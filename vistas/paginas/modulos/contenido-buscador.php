@@ -4,11 +4,26 @@
         $articulos = ControladorBlog::ctrBuscador(0, 5, $rutas[0]);
         $totalArticulos = ControladorBlog::ctrTotalBuscador($rutas[0]);
         $totalPaginas = ceil(count($totalArticulos)/5);
-        $paginaActual = 1;	
 
         $articulosDestacados = ControladorBlog::ctrArticulosDestacados(null, null);
 
 	}
+
+	/*=============================================
+	Revisar si viene paginación de busqueda
+	=============================================*/
+
+	if(isset($rutas[1]) && is_numeric($rutas[1])){
+		$paginaActual = $rutas[1];
+		$desde = ($rutas[1] -1)* 5;
+		$cantidad = 5;
+
+		$articulos = ControladorBlog::ctrBuscador($desde, $cantidad, $rutas[0]);
+	}else{
+
+		$paginaActual = 1;	
+	}
+
 ?>
 
 <!--=====================================
@@ -55,7 +70,7 @@ CONTENIDO INICIO
 
                             <div class="col-12 col-lg-7 introArticulo">
                                 
-                                <a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h4 class="d-none d-lg-block"><?php echo $value["titulo_articulo"];?></h4></a>
+                                <a href="<?php echo $blog["dominio"].$value["ruta_categoria"]."/".$value["ruta_articulo"];?>"><h4 class="d-none d-lg-block w-75"><?php echo $value["titulo_articulo"];?></h4></a>
                                 
                                 <p class="my-2 my-lg-5"><?php echo $value["descripcion_articulo"];?></p>
 
@@ -79,7 +94,7 @@ CONTENIDO INICIO
                         
                         <div class="container">
                             
-                            <ul class="pagination pagination-movil justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina></ul>
+                            <ul class="pagination pagination-movil justify-content-center" totalPaginas="<?php echo $totalPaginas; ?>" paginaActual="<?php echo $paginaActual; ?>" rutaPagina="<?php echo $rutas[0]; ?>"></ul>
 
                         </div>
 
@@ -94,10 +109,6 @@ CONTENIDO INICIO
 			<!-- COLUMNA DERECHA -->
 
 			<div class="d-none d-md-block pt-md-4 pt-lg-0 col-md-4 col-lg-3">
-
-				<!-- SOBRE MI -->
-
-				<?php echo $blog["sobre_mi"]; ?>
 
 				<!-- Artículos destacados -->
 
