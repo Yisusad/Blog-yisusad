@@ -79,13 +79,42 @@ FOOTER
 
 				<div class="input-group my-4">
 					
-					<input type="text" class="form-control" placeholder="Ingresa tu Email">
+					<form action="https://yisusad.us12.list-manage.com/subscribe/post?u=cf0fbac2067ffc7b7fce7a018&amp;id=006abbeb2d&amp;f_id=00a849e0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_self" novalidate>
 
-					<div class="input-group-append">
-						
-						<span class="input-group-text bg-dark text-white">Inscribirse</span>
+						<div class="mc-field-group">
 
-					</div>
+							<div class="input-group my-4">
+								
+								<input type="email" class="form-control required email" id="mce-EMAIL" placeholder="Ingresa tu Email" required>
+
+								<div class="input-group-append">
+									
+									<span class="input-group-text bg-dark text-white">
+										
+										<input type="submit" value="Suscribirse" name="subscribe" id="mc-embedded-subscribe" class="btn btn-dark text-white btn-sm p-0">
+
+
+									</span>
+
+								</div>
+
+							</div>
+
+							<div id="mce-responses" class="clear">
+
+								<div class="response" id="mce-error-response" style="display:none"></div>
+								<div class="response" id="mce-success-response" style="display:none"></div>
+							
+							</div>
+							 <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+							<div style="position: absolute; left: -5000px;" aria-hidden="true">
+								<input type="text" name="b_cf0fbac2067ffc7b7fce7a018_006abbeb2d" tabindex="-1" value="">
+								
+							</div>
+							
+						</div>
+
+					</form>
 
 				</div>
 
