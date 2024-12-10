@@ -2,6 +2,10 @@
 BANNER
 ======================================-->
 
+<?php
+$banner = ControladorBlog::ctrTraerBanners("interno");
+?>
+
 <div class="bannerEstatico"></div>
 
 <section class="jd-slider fade-slider">
@@ -10,18 +14,24 @@ BANNER
 		
 		<ul class="slide-area">
 			
-			<li>
+			<?php foreach ($banner as $key => $value) :?>
 
-				<div class="d-none d-md-block textoBanner">
-					
-					<h1>Watch how we work</h1>
-					<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit ea quidem</h5>
+				<?php if($value["pagina_banner"] == "interno") : ?>  
 
-				</div>
-				
-				<img src="<?php echo $blog["dominio"]; ?>vistas/img/bannerGrande01.jpg" class="img-fluid">
+					<li>
+						<div class="d-none d-md-block textoBanner">
+							
+							<h1><?php echo $value["titulo_banner"]; ?></h1>
+							<h5><?php echo $value["descripcion_banner"]; ?></h5>
 
-			</li>		
+						</div>
+						
+						<img src="<?php echo $blog["dominio"].$value["img_banner"]; ?>" class="img-fluid">
+
+					</li>	
+
+				<?php endif; ?>
+			<?php endforeach; ?>		
 
 		</ul>
 

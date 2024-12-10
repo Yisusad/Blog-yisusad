@@ -233,4 +233,17 @@ Class ModeloBlog{
         $stmt -> execute();
         return $stmt -> fetchAll();
     }
+
+    
+    /*=============================================
+    MODELO TRAER ANUNCIOS
+    =============================================*/
+
+    static public function mdlTraerBanners($tabla, $valor){
+
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE pagina_banner = :pagina_banner");
+        $stmt -> bindParam(":pagina_banner", $valor, PDO::PARAM_INT);
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+    }
 }   
